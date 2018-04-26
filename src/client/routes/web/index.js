@@ -3,10 +3,10 @@ import { Route, Switch, withRouter } from 'react-router-dom'
 
 import { getRoutes } from './routes'
 
-import styles from './Routes.css'
+// import styles from './Routes.css'
 
 import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+// import { bindActionCreators } from 'redux'
 
 import ReactGA from 'react-ga'
 
@@ -25,7 +25,7 @@ class Routes extends Component {
   // }
 
   render () {
-    this.routes = getRoutes(this.props.loginState, this.props.cartState, this.props.orderNumber, this.props.location)
+    this.routes = getRoutes(this.props.loginState)
     this.currentKey = this.props.location.pathname.split('/')[1] || '/'
     this.timeout = {enter: 300, exit: 0}
     return (
@@ -78,26 +78,6 @@ class Routes extends Component {
                     </Switch>
                   </div>
                 </div>
-                <Switch location={this.props.location}>
-                  {this.routes.map((route, index) => (
-                    // Render more <Route>s with the same paths as
-                    // above, but different components this time.
-                    <Route
-                      location={this.props.location}
-                      key={index}
-                      path={route.path}
-                      exact={route.exact}
-                      render={props => (
-                        <route.footer
-                          {...props}
-                          footerText={route.footerText}
-                          forwardLink={route.forwardLink}
-                          pageType={route.pageType}
-                        />
-                      )}
-                    />
-                  ))}
-                </Switch>
               </div>
             )
           }
@@ -109,10 +89,7 @@ class Routes extends Component {
 
 function mapStateToProps (state, ownProps) {
   return {
-    location: ownProps.location,
-    loginState: state.loginState,
-    cartState: state.cartState,
-    orderNumber: state.orderState.orderSummaryState.orderResponse.order_number
+    location: ownProps.location
   }
 }
 

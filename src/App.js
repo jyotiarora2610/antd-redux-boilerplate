@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
-import { Button } from 'antd';
-import './App.css';
+import React from 'react'
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <Button type="primary">Button</Button>
-      </div>
-    );
-  }
-}
+import './App.css'
 
-export default App;
+const App = props => (
+  <div>
+    <div {...props} />
+    {/* <Text>{JSON.stringify(props.history)}</Text> */}
+  </div>
+)
+
+export default App

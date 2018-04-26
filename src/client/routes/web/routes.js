@@ -1,7 +1,6 @@
 import React from 'react'
 
 import * as routePaths from './routeConstants'
-import * as pageTypes from './pageTypeConstants'
 
 import Loadable from 'react-loadable'
 
@@ -39,20 +38,36 @@ const LandingPageWarpper = Loadable({
   loading: Loading
 })
 
-export const getRoutes = (loginState, cartState, orderNumber, location) => {
-  const urlPathName = location.pathname
+const headerWrapper =  Loadable({
+  loader: () => import('../../component/header/Header'),
+  loading: Loading
+})
+
+const headerWithTabsWrapper =  Loadable({
+  loader: () => import('../../component/header/HeaderWithTabs'),
+  loading: Loading
+})
+
+const loginWrapper = Loadable({
+  loader: () => import('../../component/pages/login/Login'),
+  loading: Loading
+})
+
+export const getRoutes = (loginState) => {
+  // const urlPathName = location.pathname
 
   return [
     {
       path: '/',
       exact: true,
+      header: headerWrapper,
+      main: LandingPageWarpper
+    },
+    {
+      path: routePaths.LOGIN,
+      exact: true,
       header: EmptyDiv,
-      headerText: 'Order now',
-      footerText: 'Order now',
-      main: LandingPageWarpper,
-      footer: EmptyDiv,
-      forwardLink: routePaths.HOME_PAGE,
-      pageType: pageTypes.LANDING_PAGE
+      main: loginWrapper
     }
   ]
 }

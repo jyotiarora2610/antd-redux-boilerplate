@@ -1,5 +1,8 @@
 // import { combineReducers } from 'redux'
-import { createMigrate, persistCombineReducers } from 'redux-persist'
+import {
+  // createMigrate,
+  persistCombineReducers
+} from 'redux-persist'
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2'
 import storage from 'redux-persist/es/storage' // default: localStorage if web, AsyncStorage if react-native
 
